@@ -16,8 +16,11 @@ var fonts =  "mplus-1mn-regular.ttf  mplus-2c-regular.ttf " +
     "mplus-1mn-light.ttf   mplus-2c-light.ttf " +    
     "mplus-1mn-medium.ttf  mplus-2c-medium.ttf";
 fonts = fonts.match(/\S+/g);
-fonts.filter(function( n, i){
-    //console.log( n, i );
+var regex = /-\s+-/;
+
+fonts.sort(function( a, b){
+    
+    return b.localeCompare( a );
 });
 
 var l = fonts.length, div, css = document.createElement('style'), p, name;
