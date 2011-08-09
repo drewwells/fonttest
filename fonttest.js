@@ -23,20 +23,26 @@ fonts.sort(function( a, b){
     return b.localeCompare( a );
 });
 
-var l = fonts.length, div, css = document.createElement('style'), p, name;
+var l = fonts.length, div, css = document.createElement('style'), p, name, fontname;
 
 while( fonts[--l] ){
 
     name = fonts[l].split('.')[0];
+    
+    fontname = name;// .replace(/(m)(plus-)([^-]+)-(.+)/,function(str,p1,p2,p3,p4){
+    // //console.log( arguments );
+    //     return 'M' + p3 + p4;
+    // });
+
     p = document.createElement('p');
-    p.setAttribute( 'style', 'font-family: ' + name + ';' );
+    p.setAttribute( 'style', 'font-family: ' + fontname + ';' );
     p.innerHTML = 'The razor-toothed piranhas of the genera Serrasalmus and Pygocentrus are the most ferocious freshwater fish in the world. In reality, they seldom attack a human.' +
           '</div>';
     div = document.createElement('div');
 
     div.innerHTML = '<label>' + name + '</label> ' +
-        '<a href="' + name + '-webfont.woff">WOFF</a> ' +
-        '<a href="' + name + '-webfont.eot">EOT</a> ' +
+        '<a href="webfonts/' + name + '-webfont.woff">WOFF</a> ' +
+        '<a href="webfonts/' + name + '-webfont.eot">EOT</a> ' +
         '<a href="webfonts/' + name.replace('mplus-','M+').replace('-','') + '-demo.html">Demo</a>';
 
     div.appendChild( p );
@@ -45,7 +51,7 @@ while( fonts[--l] ){
 
     css.innerHTML += '\n\n@font-face \n' +
         "{\n" + 
-        "  font-family: " + name + ";\n" +
+        "  font-family: " + fontname + ";\n" +
         "  src: url('webfonts/" + name + "-webfont.eot');\n" +
         "  src: url('webfonts/" + name + "-webfont.eot?#iefix') format('embedded-opentype'),\n" +
         "       url('webfonts/" + name + "-webfont.woff') format('woff')\n" +
